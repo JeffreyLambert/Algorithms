@@ -127,3 +127,9 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# Development script
+/sandbox.py
+
+# IDE Files
+.idea/
