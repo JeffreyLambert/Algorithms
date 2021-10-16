@@ -1,7 +1,7 @@
 from typing import List, Union, Any
 
 
-def simple_search(value: Any, space: List) -> int:
+def simple_search(value: Any, space: List) -> Union[int, None]:
     """
     Return index value for item, if item is in the search space.
 
@@ -28,9 +28,10 @@ def simple_search(value: Any, space: List) -> int:
         return index
     except Exception as e:
         print(e)
+        return None
 
 
-def binary_search(value: Any, space: List) -> int:
+def binary_search(value: Any, space: List) -> Union[int, None]:
     """
     Return index value for item, if item is in the search space.
 
@@ -74,3 +75,41 @@ def binary_search(value: Any, space: List) -> int:
         return index
     except Exception as e:
         print(e)
+        return None
+
+
+def selection_sort(sequence: List) -> Union[List, None]:
+    """
+    Takes in a sequence of sortable items and returns a sorted sequence of those items.
+
+    Expects all elements of sequence to be same type and for sequence to not be empty.
+
+    Args:
+        sequence (list): list object
+
+    Returns:
+        list
+    """
+    assert len(sequence) > 0, "Sequence is empty.  Cannot sort empty sequence."
+    assert all(isinstance(x, type(sequence[0])) for x in sequence), "Sequence contains multiple types."
+
+    sorted_sequence = sequence.copy()
+    n = len(sorted_sequence)
+    try:
+        # Loop through list
+        for i in range(0, n, 1):
+            jmin = i
+            # Loop through remaining elements of list
+            for j in range(i + 1, n, 1):
+                if sorted_sequence[j] < sorted_sequence[jmin]:
+                    jmin = j
+
+            # Swap places between current element and smaller element found
+            if jmin != i:
+                sorted_sequence[i], sorted_sequence[jmin] = sorted_sequence[jmin], sorted_sequence[i]
+
+        return sorted_sequence
+
+    except Exception as e:
+        print(e)
+        return None
