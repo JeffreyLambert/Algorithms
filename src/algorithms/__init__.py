@@ -113,3 +113,27 @@ def selection_sort(sequence: List) -> Union[List, None]:
     except Exception as e:
         print(e)
         return None
+
+
+def quicksort(sequence: List[Union[int, float]]):
+    """
+    Sort an array using quicksort algorithm
+    Args:
+        sequence: array like object
+
+    Returns:
+        sorted array
+    """
+    assert all(isinstance(x, type(sequence[0])) for x in sequence), "Sequence contains multiple types."
+
+    try:
+        if len(sequence) <= 1:
+            return sequence
+        else:
+            pivot = sequence[0]
+            less = [x for x in sequence if x < pivot]
+            greater = [x for x in sequence if x > pivot]
+            return quicksort(less) + [pivot] + quicksort(greater)
+
+    except Exception as e:
+        print(e)
